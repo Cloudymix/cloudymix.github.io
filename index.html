@@ -6,7 +6,9 @@
     margin: 0;
     height: 100vh;
     overflow: hidden;
+    font-family: Arial, sans-serif;
 
+    /* animated green background */
     background: linear-gradient(-45deg,
       #064e3b,
       #065f46,
@@ -17,27 +19,41 @@
 
     background-size: 400% 400%;
     animation: greenFlow 12s ease infinite;
-    font-family: Arial, sans-serif;
+
+    position: relative;
   }
 
   @keyframes greenFlow {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
-  /* optional subtle glow overlay */
+  /* green glow overlay */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: radial-gradient(circle at top, rgba(34,197,94,0.18), transparent 60%);
+    background: radial-gradient(circle at top,
+      rgba(34,197,94,0.18),
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+
+  /* BLACK GLASS LAYER */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    /* semi-transparent dark glass */
+    background: rgba(0, 0, 0, 0.35);
+
+    /* blur effect (glass feel) */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
     pointer-events: none;
   }
 </style>
