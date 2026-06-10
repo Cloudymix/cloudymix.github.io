@@ -21,7 +21,8 @@ function submitData() {
 
   fetch("https://script.google.com/macros/s/AKfycbyBO0SZN1c-kIU3sqQ_reO3xYC1A2IM2djTzsBaHikljqOmWcxolIz_nq8MCuT9rj_u/exec", {
     method: "POST",
-    body: formData
+    body: formData,
+mode: "no-cors"
   });
 
   alert("Submitted!");
