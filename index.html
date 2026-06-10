@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
-<body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Green Glass UI</title>
+
 <style>
   body {
     margin: 0;
     height: 100vh;
-    overflow: hidden;
     font-family: Arial, sans-serif;
 
-    /* animated green background */
     background: linear-gradient(-45deg,
       #064e3b,
       #065f46,
@@ -20,7 +22,9 @@
     background-size: 400% 400%;
     animation: greenFlow 12s ease infinite;
 
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   @keyframes greenFlow {
@@ -29,35 +33,33 @@
     100% { background-position: 0% 50%; }
   }
 
-  /* green glow overlay */
-  body::before {
-    content: "";
-    position: fixed;
+  /* GLASS LAYER (BELOW SURVEY) */
+  .glass-bg {
+    position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top,
-      rgba(34,197,94,0.18),
-      transparent 60%
-    );
-    pointer-events: none;
-  }
-
-  /* BLACK GLASS LAYER */
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-
-    /* semi-transparent dark glass */
-    background: rgba(0, 0, 0, 0.35);
-
-    /* blur effect (glass feel) */
+    background: rgba(0, 0, 0, 0.4); /* 60% transparent */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    z-index: 1;
+  }
 
-    pointer-events: none;
+  /* SURVEY CONTAINER (ABOVE GLASS) */
+  .survey {
+    position: relative;
+    z-index: 2;
+
+    width: 400px;
+    padding: 20px;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+
+    color: white;
   }
 </style>
-
+</head>
+<body>
 <input id="desc" placeholder="Description">
 <input id="amount" placeholder="Amount">
 <select id="type">
@@ -83,6 +85,12 @@ mode: "no-cors"
 
   alert("Submitted!");
 }</script>
+<div class="glass-bg"></div>
+
+<div class="survey">
+  <h2>Survey</h2>
+  <p>This sits above the glass layer.</p>
+</div>
 
 </body>
 </html>
