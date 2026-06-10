@@ -1,202 +1,169 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<meta charset="UTF-8"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance Tracker</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>12THOMPSON_FINANCE</title>
 
-<style> 
- html, body {
-    height: 100%;
-    margin: 0;
-    overflow: hidden;
-  }
-    
+<style>
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+* {
+  font-family: 'Figtree', sans-serif;
+}
+
 body {
-    margin: 0;
-    height: 100vh;
-    font-family: 'Figtree', sans-serif;
-text-align:center;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(-45deg, #064e3b, #065f46, #10b981, #22c55e, #16a34a);
+  background-size: 400% 400%;
+  animation: greenFlow 25s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+text-align: center;
+}
 
-    background: linear-gradient(-45deg,
-      #064e3b,
-      #065f46,
-      #10b981,
-      #22c55e,
-      #16a34a
-    );
+@keyframes greenFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    background-size: 400% 400%;
-    animation: greenFlow 12s ease infinite;
+.dots {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.25;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.6) 2px, transparent 2px);
+  background-size: 18px 18px;
+  animation: moveDots 6s linear infinite;
+}
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
+@keyframes moveDots {
+  0% { background-position: 0 0; }
+  100% { background-position: 30px 30px; }
+}
 
-  @keyframes greenFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  /* glass layer */
-  .glass-bg {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 1;
-  }
+.glass-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1;
+}
 
 @keyframes popIn {
-    0% {
-      opacity: 0;
-      transform: scale(0.85);
-    }
-    60% {
-      opacity: 1;
-      transform: scale(1.03);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
+  0% { opacity: 0; transform: scale(0.85); }
+  60% { opacity: 1; transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
 
+.form-card {
+  position: relative;
+  z-index: 3;
+  width: 420px;
+  max-width: 92%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  overflow: hidden;
+  animation: popIn 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-  /* FORM CARD */
-  .form-card {
-    position: relative;
-    z-index: 2;
-    width: 420px;
+.header {
+  background: #0f9d58;
+  color: white;
+  padding: 18px 20px;
+}
 
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    overflow: hidden;
-  }
+.header h2 {
+  margin: 0;
+  font-size: 18px;
+}
 
-  .header {
-    background: #0f9d58;
-    color: white;
-    padding: 18px 20px;
-  }
+.header p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  opacity: 0.9;
+}
 
-  .header h2 {
-    margin: 0;
-    font-size: 18px;
-  }
+.body {
+  padding: 20px;
+}
 
-  .header p {
-    margin: 4px 0 0;
-    font-size: 13px;
-    opacity: 0.9;
-  }
+.field {
+  margin-bottom: 16px;
+}
 
-  .body {
-    padding: 20px;
-  }
+.field input,
+.field select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 12px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
 
-  .field {
-    margin-bottom: 16px;
-  }
+.field input:focus,
+.field select:focus {
+  border-color: #0f9d58;
+  box-shadow: 0 0 0 2px rgba(15,157,88,0.15);
+}
 
-  /* ✅ FIXED INPUT ISSUE HERE */
-  .field input,
-  .field select {
-    width: 100%;
-    box-sizing: border-box;
+button {
+  width: 100%;
+  padding: 10px;
+  background: #0f9d58;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
-    padding: 11px 12px;
+button:hover {
+  background: #0b7d46;
+}
 
-    border: 1px solid #dadce0;
-    border-radius: 8px;
-
-    font-size: 14px;
-font-family: 'Figtree', sans-serif;
-    outline: none;
-
-    background: #fff;
-
-    transition: 0.2s;
-  }
-
-  .field input:focus,
-  .field select:focus {
-    border-color: #0f9d58;
-    box-shadow: 0 0 0 2px rgba(15,157,88,0.15);
-  }
-
- .page-footer {
-    position: fixed;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.6);
-    letter-spacing: 0.3px;
-
+.page-footer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
 font-weight: bold;
-font-style: italic;
-
-    z-index: 3;
-  }
-
-  button {
-    width: 100%;
-    padding: 10px;
-
-    background: #0f9d58;
-    color: white;
-
-    border: none;
-    border-radius: 8px;
-
-font-family: 'Figtree', sans-serif;    
-font-size: 14px;
-    cursor: pointer;
-
-    transition: 0.2s;
-  }
-
-  button:hover {
-    background: #0b7d46;
-  }
-
- @media (max-width: 600px) {
-    .form-card {
-      width: 92%;
-    }
-
-    .body {
-      padding: 16px;
-    }
-
-    .header h2 {
-      font-size: 16px;
-    }
-  }
+    font-style: italic;
     
+  color: rgba(255,255,255,0.6);
+  z-index: 4;
+}
 </style>
 </head>
 
 <body>
 
+<div class="dots"></div>
 <div class="glass-bg"></div>
 
 <div class="form-card">
-
   <div class="header">
     <h2>Finance Tracker</h2>
-    <p>List down incomes and expenses here.</p>
+    <p>Log your income or expenses</p>
   </div>
 
   <div class="body">
-
     <div class="field">
       <input id="desc" placeholder="Description">
     </div>
@@ -213,12 +180,13 @@ font-size: 14px;
     </div>
 
     <button onclick="submitData()">Submit</button>
-
   </div>
 </div>
+
 <div class="page-footer">
-made by 12 thomson !! :33
+  made by 12 thomson !! :33
 </div>
+
 <script>
 function submitData() {
   const formData = new FormData();
