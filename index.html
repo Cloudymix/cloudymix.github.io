@@ -6,20 +6,41 @@ body {
   margin: 0;
   height: 100vh;
   font-family: Arial, sans-serif;
-  color: white;
 
-  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1c1c1c);
-  background-size: 400% 400%;
-  animation: gradientBG 10s ease infinite;
+  /* base gradient */
+  background: linear-gradient(135deg, #b7ff00, #2c3e50, #000000);
+  overflow: hidden;
 }
 
-@keyframes gradientBG {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
+/* overlay pattern (gives texture like your image) */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.2), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(0,0,0,0.4), transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(255,255,255,0.1), transparent 60%);
+
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* optional “grain” texture */
+body::after {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://www.transparenttextures.com/patterns/noise.png");
+  opacity: 0.08;
+  pointer-events: none;
 }
 </style>
-
 <input id="desc" placeholder="Description">
 <input id="amount" placeholder="Amount">
 <select id="type">
