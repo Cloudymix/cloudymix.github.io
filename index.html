@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Finance Tracker</title>
+<html lang="en"><head>
+<meta charset="UTF-8"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12THOMPSON_FINANCE</title>
 
-<style>
-  body {
+<style> 
+ html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+  }
+    
+body {
     margin: 0;
     height: 100vh;
-    font-family: Arial, sans-serif;
+    font-family: 'Figtree', sans-serif;
+text-align:center;
 
     background: linear-gradient(-45deg,
       #064e3b,
@@ -34,23 +42,38 @@
     100% { background-position: 0% 50%; }
   }
 
-  /* glass layer behind form */
+  /* glass layer */
   .glass-bg {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.4); /* 60% transparent */
+    background: rgba(0,0,0,0.4);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: 1;
   }
 
-  /* FORM CARD (Google Forms style) */
+@keyframes popIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1.03);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+
+  /* FORM CARD */
   .form-card {
     position: relative;
     z-index: 2;
     width: 420px;
 
-    background: #ffffff;
+    background: #fff;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     overflow: hidden;
@@ -81,14 +104,23 @@
     margin-bottom: 16px;
   }
 
+  /* ✅ FIXED INPUT ISSUE HERE */
   .field input,
   .field select {
     width: 100%;
-    padding: 10px 12px;
+    box-sizing: border-box;
+
+    padding: 11px 12px;
+
     border: 1px solid #dadce0;
-    border-radius: 6px;
+    border-radius: 8px;
+
     font-size: 14px;
+font-family: 'Figtree', sans-serif;
     outline: none;
+
+    background: #fff;
+
     transition: 0.2s;
   }
 
@@ -98,21 +130,57 @@
     box-shadow: 0 0 0 2px rgba(15,157,88,0.15);
   }
 
+ .page-footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.3px;
+
+font-weight: bold;
+font-style: italic;
+
+    z-index: 3;
+  }
+
   button {
     width: 100%;
     padding: 10px;
+
     background: #0f9d58;
     color: white;
+
     border: none;
-    border-radius: 6px;
-    font-size: 14px;
+    border-radius: 8px;
+
+font-family: 'Figtree', sans-serif;    
+font-size: 14px;
     cursor: pointer;
+
     transition: 0.2s;
   }
 
   button:hover {
     background: #0b7d46;
   }
+
+ @media (max-width: 600px) {
+    .form-card {
+      width: 92%;
+    }
+
+    .body {
+      padding: 16px;
+    }
+
+    .header h2 {
+      font-size: 16px;
+    }
+  }
+    
 </style>
 </head>
 
@@ -124,7 +192,7 @@
 
   <div class="header">
     <h2>Finance Tracker</h2>
-    <p>Log your income or expenses</p>
+    <p>List down incomes and expenses here.</p>
   </div>
 
   <div class="body">
@@ -148,7 +216,9 @@
 
   </div>
 </div>
-
+<div class="page-footer">
+made by 12 thomson !! :33
+</div>
 <script>
 function submitData() {
   const formData = new FormData();
@@ -167,5 +237,5 @@ function submitData() {
 }
 </script>
 
-</body>
-</html>
+
+</body></html>
