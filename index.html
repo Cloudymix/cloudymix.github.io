@@ -15,11 +15,23 @@
 function submitData() {
   fetch("https://script.google.com/macros/s/AKfycbyjIQEr0v7A56t-3CjOUHXYUKx-8WnyF5pyG1mBgC5ryrJZxujZ4H_W_HHQzMNxdJik/exec", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify({
       name: document.getElementById("name").value,
       amount: document.getElementById("amount").value,
       type: document.getElementById("type").value
     })
+  })
+  .then(response => response.text())
+  .then(data => {
+    console.log(data);
+    alert("Submitted!");
+  })
+  .catch(error => {
+    console.error(error);
+    alert("Error!");
   });
 }
 </script>
